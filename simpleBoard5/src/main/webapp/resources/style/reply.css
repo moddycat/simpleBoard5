@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* 댓글용 CSS */
+table.replyList {
+	width : 900px;
+	margin:0 auto;
+	clear : both;
+	background-color : #fff;
+	text-align : center;
+}
+tr {
+	border-top: 1px solid gray;
+}
+
+td.replyid {
+	width : 150px;
+	text-align : center;
+}
+td.replytext {
+	width : 500px;
+	text-align:left;
+}
+td.replydate {
+	width : 150px;
+	text-align:center;
+}
+td.replybutton {
+	width : 100px;
+	text-align:center;
+}
+.user
+.mainTitle {
+	width: 220px;
+}
+.board th {
+	background-color: black;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.board td {
+	width: 100px;
+	background-color: #eeeeee;
+	padding: 5px;
+	text-align: center;
+}
+
+.board td.title {
+	width: 300px;
+	text-align: left;
+}
+
+.board .title:hover {
+	background-color: #cccccc;
+}
+
+.board td.content {
+	width: 400px;
+	text-align: left;
+}
+.boardtitle {
+	width: 750px;
+	margin: auto;
+	padding: 20px;
+	text-align: center;
+}
+.boardheader {
+	padding-right : 10px;
+	text-align: right;
+	font-weight: bold;
+}
+.boardfooter {
+	width: 750px;
+	margin: auto;
+	padding: 20px;
+	text-align: center;
+}
+pre {
+	font-size: 11pt;
+}
+
+a {
+	text-decoration:none;
+	display:inline-block;
+	width : auto;
+}
+a.btn {
+	width : 90px;
+}
+
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: black;
+	font-weight: bold;
+}
