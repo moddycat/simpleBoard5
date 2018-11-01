@@ -1,8 +1,6 @@
 package VO;
 
 public class Member {
-	
-
 	private String userid;
 	private String userpwd;
 	private String username;
@@ -14,9 +12,7 @@ public class Member {
 	private String address;
 	private String introduce;
 	
-	
 	public Member() {}
-
 
 	public Member(String userid, String userpwd, String username, String gender, String hobby, String birth, int age,
 			String phone, String address, String introduce) {

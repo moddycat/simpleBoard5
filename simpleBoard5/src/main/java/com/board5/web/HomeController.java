@@ -43,19 +43,20 @@ public class HomeController {
 	final int countPerPage = 10;
 	final int pagePerGroup = 5;
 	private static final String UPLOADPATH="C:\\\\fileupload";
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		
-		
+	public String home() {	
 		return "home";
 	}
 	
+	/*メンバー加入ページ移動*/
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
 	public String join1() {
 		
 		return "join";
 	}
 	
+	/*メンバー加入*/
 	@RequestMapping(value = "/member", method = RequestMethod.POST)
 	public String join2(String userid, Member vo, Model model) {
 		System.out.println(vo);
@@ -63,25 +64,10 @@ public class HomeController {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
 		mapper.insertMember(vo);
 		
-		
 		return "home";
 	}
-	/*@RequestMapping(value = "/checkid", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<Object, Object> idcheck(@RequestBody String userid){
-		int count = 0;
-		
-		return "bb";
-	}*/
-	@RequestMapping(value = "/memberlogin", method = RequestMethod.GET)
-	public String login1(/*Member member, HttpSession hsession*/) {
-		
-		/*Member result = mapper.findMember(member);
-		
-		hsession.setAttribute("userid", result.getUserid() );*/
-		
-		return "login";
-	}
+	
+	/*メンバーログイン */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login2(Member vo, HttpSession hsession) {
 		System.out.println(vo);
@@ -90,9 +76,10 @@ public class HomeController {
 		Member result = mapper.login(vo);
 		hsession.setAttribute("userid", result.getUserid());
 		
-		
 		return "home";
 	}
+	
+	/*メンバーログアウト*/
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String login3(Member vo, HttpSession hsession) {
 		
@@ -100,6 +87,8 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	/*掲示板ページ制御*/
 	@RequestMapping(value = "/listboard", method = RequestMethod.GET)
 	public String board1(@RequestParam(value="page", defaultValue="1") int page,Model model,String searchKeyword) {
 		List<Board> boardlist = new ArrayList<Board>();
@@ -116,35 +105,22 @@ public class HomeController {
 		model.addAttribute("navi", navi);
 		return "board";
 	}
-	/*@RequestMapping(value ="/listboard", method=RequestMethod.POST)
-	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model) {
-		
-		List<Board> boardList = new ArrayList<Board>();
-		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		
-		int total = mapper.getTotal();
-		
-		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
-		
-		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
-		boardList = mapper.selectAll(rb);
-		
-		model.addAttribute("boardList",boardList);
-		model.addAttribute("navi",navi);
-		
-		return "board";
-		
-	}*/
+	
+	/*ポスティングページへ移動*/
 	@RequestMapping(value = "/boardlist", method = RequestMethod.GET)
 	public String board2() {
 		
 		return "boardwrite";
 	}
+	
+	/*掲示板（board）ページへ戻る*/
 	@RequestMapping(value = "/golist", method = RequestMethod.POST)
 	public String board3() {
 		
 		return "redirect:/listboard";
 	}
+	
+	/*新しいポスティングを書き込み*/
 	@RequestMapping(value = "/boardwrite", method = RequestMethod.POST)
 	public String board4(Model model, Board vo, HttpSession hsession, MultipartFile uploadfile) {
 		System.out.println(vo);
@@ -166,10 +142,8 @@ public class HomeController {
 		try {
 			uploadfile.transferTo(file);
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		}
@@ -178,6 +152,8 @@ public class HomeController {
 		
 		return "redirect:/listboard";
 	}
+	
+	/*掲示板（board）*/
 	@RequestMapping(value = "/boardinfo", method = RequestMethod.GET)
 	public String boardinfo(Board vo, Model model,HttpSession hsession) {
 		System.out.println(vo);
@@ -190,12 +166,16 @@ public class HomeController {
 		
 		return "boardinfo";
 	}
+	
+	/*掲示板（board）に戻る*/
 	@RequestMapping(value = "/infoboard", method = RequestMethod.POST)
 	public String boardinfo2() {
 	
 		
 		return "redirect:/listboard";
 	}
+	
+	/*パイルダウンロード*/
 	@RequestMapping(value="/download", method=RequestMethod.GET)
 	public void download(Board vo, Model model, HttpServletResponse response) {
 		Board boardInfo = new Board();

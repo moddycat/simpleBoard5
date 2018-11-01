@@ -21,6 +21,7 @@ SELECT
 	</if>
 	ORDER BY boardNum DESC
 </select>
+
 <insert id="insertBoard" parameterType="Board">
 	INSERT INTO BOARD2
 	(
@@ -46,6 +47,7 @@ SELECT
 		</if>
 	)
 </insert>
+
 <select id="boardinfo" parameterType="Board" resultType="Board">
 SELECT 
 	boardNum,
@@ -72,4 +74,5 @@ UPDATE BOARD2
 SET hitcount = hitcount+1
 WHERE boardNum = #{boardNum}
 </update>
+
 </mapper>

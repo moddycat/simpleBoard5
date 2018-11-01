@@ -11,7 +11,6 @@ public class Board {
 	private String savedFile;
 	
 	public Board() {
-		
 	}
 
 	public Board(int boardNum, String userId, String title, String content, int hitcount, String regdate,
